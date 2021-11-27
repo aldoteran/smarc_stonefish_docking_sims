@@ -16,7 +16,7 @@
     <arg name="simulation_data" default="$(find smarc_stonefish_worlds)/data"/> <!-- path to the data directory -->
     <arg name="simulation_rate" default="300"/> <!-- number of simulation steps per second -->
     <arg name="graphics_resolution" default="1200 800"/> <!-- resolution of the simulation window -->
-    <arg name="graphics_quality" default="medium"/> <!-- low, medium or high -->
+    <arg name="graphics_quality" default="low"/> <!-- low, medium or high -->
 
     <include file="$(find smarc_stonefish_worlds)/launch/stonefish.launch">
         <arg name="world_config_file" value="$(arg world_config_file)"/>

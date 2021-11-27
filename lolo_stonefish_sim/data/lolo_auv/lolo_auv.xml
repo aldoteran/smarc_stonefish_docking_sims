@@ -4,11 +4,11 @@
     <base_link name="Vehicle" type="compound" physics="submerged">
         <external_part name="Hull" type="model" physics="submerged" buoyant="false">
             <physical>
-                <mesh filename="$(find lolo_stonefish_sim)/data/lolo_auv/mesh/lolo.obj" scale="1.0"/>
+                <mesh filename="$(find lolo_stonefish_sim)/data/lolo_auv/mesh/lolo_hull.obj" scale="1.0"/>
                 <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
             </physical>
             <visual>
-                <mesh filename="$(find lolo_stonefish_sim)/data/lolo_auv/mesh/lolo.obj" scale="1.0"/>
+                <mesh filename="$(find lolo_stonefish_sim)/data/lolo_auv/mesh/lolo_hull.obj" scale="1.0"/>
                 <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
             </visual>
             <material name="Fiberglass"/>
@@ -46,7 +46,7 @@
         <propeller diameter="0.12" right="true">
             <mesh filename="$(find lolo_stonefish_sim)/data/lolo_auv/mesh/propeller.obj" scale="1.0"/>
             <material name="Neutral"/>
-            <look name="manipulator"/>	
+            <look name="manipulator"/>
         </propeller>
     </actuator>
 
@@ -57,7 +57,7 @@
         <propeller diameter="0.12" right="false">
             <mesh filename="$(find lolo_stonefish_sim)/data/lolo_auv/mesh/propeller.obj" scale="1.0"/>
             <material name="Neutral"/>
-            <look name="manipulator"/>	
+            <look name="manipulator"/>
         </propeller>
     </actuator>
 
@@ -68,7 +68,7 @@
         <visual>
             <mesh filename="$(find lolo_stonefish_sim)/data/lolo_auv/mesh/back_fin.obj" scale="1.0"/>
             <material name="Neutral"/>
-            <look name="manipulator"/>	
+            <look name="manipulator"/>
             <origin rpy="1.5707 0.0 0.0" xyz="0.0 0.0 0.0"/>
         </visual>
     </actuator>
@@ -80,7 +80,7 @@
         <visual>
             <mesh filename="$(find lolo_stonefish_sim)/data/lolo_auv/mesh/fin.obj" scale="1.0"/>
             <material name="Neutral"/>
-            <look name="manipulator"/>	
+            <look name="manipulator"/>
             <origin rpy="1.5707 0.0 0.0" xyz="0.0 0.0 0.0"/>
         </visual>
     </actuator>
@@ -92,7 +92,7 @@
         <visual>
             <mesh filename="$(find lolo_stonefish_sim)/data/lolo_auv/mesh/fin.obj" scale="1.0"/>
             <material name="Neutral"/>
-            <look name="manipulator"/>	
+            <look name="manipulator"/>
             <origin rpy="1.5707 0.0 0.0" xyz="0.0 0.0 0.0"/>
         </visual>
     </actuator>
@@ -104,7 +104,7 @@
         <visual>
             <mesh filename="$(find lolo_stonefish_sim)/data/lolo_auv/mesh/fin.obj" scale="1.0"/>
             <material name="Neutral"/>
-            <look name="manipulator"/>	
+            <look name="manipulator"/>
             <origin rpy="1.5707 0.0 0.0" xyz="0.0 0.0 0.0"/>
         </visual>
     </actuator>
@@ -116,7 +116,7 @@
         <visual>
             <mesh filename="$(find lolo_stonefish_sim)/data/lolo_auv/mesh/fin.obj" scale="1.0"/>
             <material name="Neutral"/>
-            <look name="manipulator"/>	
+            <look name="manipulator"/>
             <origin rpy="1.5707 0.0 0.0" xyz="0.0 0.0 0.0"/>
         </visual>
     </actuator>
@@ -176,7 +176,7 @@
             <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
         </visual>
         <material name="Neutral"/>
-        <look name="manipulator"/>	
+        <look name="manipulator"/>
     </link>
 
     <link name="RudderPort" type="model" physics="submerged" buoyant="false">
@@ -189,7 +189,7 @@
             <origin rpy="1.5707 0.0 0.0" xyz="0.0 0.0 0.0"/>
         </visual>
         <material name="Neutral"/>
-        <look name="manipulator"/>	
+        <look name="manipulator"/>
     </link>
 
     <link name="RudderStbd" type="model" physics="submerged" buoyant="false">
@@ -202,7 +202,7 @@
             <origin rpy="1.5707 0.0 0.0" xyz="0.0 0.0 0.0"/>
         </visual>
         <material name="Neutral"/>
-        <look name="manipulator"/>	
+        <look name="manipulator"/>
     </link>
 
     <joint name="elevator_joint" type="revolute">
@@ -232,12 +232,12 @@
     <actuator name="Servo1" type="servo">
         <joint name="rudder_port_joint"/>
         <controller position_gain="1.0" velocity_gain="1.0" max_torque="1000.0"/>
-    </actuator> 
+    </actuator>
 
     <actuator name="Servo2" type="servo">
         <joint name="rudder_stbd_joint"/>
         <controller position_gain="1.0" velocity_gain="1.0" max_torque="1000.0"/>
-    </actuator> 
+    </actuator>
 
     <actuator name="ElevatorServo" type="servo">
         <joint name="elevator_joint"/>
@@ -286,7 +286,7 @@
     <world_transform rpy="3.1416 0.0 1.57" xyz="$(arg robot_pos)"/>
 
     <ros_publisher servos="/$(arg robot_name)/joint_states"/>
-    <ros_subscriber rudders="/$(arg robot_name)/sim/rudder_setpoints" thrusters="/$(arg robot_name)/sim/thruster_setpoints" servos="/$(arg robot_name)/desired_joint_states"/> 
+    <ros_subscriber rudders="/$(arg robot_name)/sim/rudder_setpoints" thrusters="/$(arg robot_name)/sim/thruster_setpoints" servos="/$(arg robot_name)/desired_joint_states"/>
     <ros_base_link_transforms publish="$(param simulate_dr)"/>
 
 </robot>
