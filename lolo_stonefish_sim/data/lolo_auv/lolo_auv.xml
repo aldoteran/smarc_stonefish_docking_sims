@@ -4,11 +4,11 @@
     <base_link name="Vehicle" type="compound" physics="submerged">
         <external_part name="Hull" type="model" physics="submerged" buoyant="false">
             <physical>
-                <mesh filename="$(find lolo_stonefish_sim)/data/lolo_auv/mesh/lolo_hull.obj" scale="1.0"/>
+                <mesh filename="$(find lolo_stonefish_sim)/data/lolo_auv/mesh/lolo.obj" scale="1.0"/>
                 <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
             </physical>
             <visual>
-                <mesh filename="$(find lolo_stonefish_sim)/data/lolo_auv/mesh/lolo_hull.obj" scale="1.0"/>
+                <mesh filename="$(find lolo_stonefish_sim)/data/lolo_auv/mesh/lolo.obj" scale="1.0"/>
                 <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
             </visual>
             <material name="Fiberglass"/>
