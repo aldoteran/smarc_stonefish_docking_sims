@@ -1,5 +1,5 @@
-#!/usr/bin/env bash
-
+#!/usr/bin/env bash 
+source ~/catkin_ws/devel/setup.bash
 NUM_ROBOTS=1
 # the scenario and environment that will be loaded in the simulation
 # it includes the world map, auvs, where the auvs are etc.
@@ -66,6 +66,7 @@ case "$SCENARIO" in
 		exit 1
 esac
 
+source ~/catkin_ws/devel/setup.bash
 SAM_STONEFISH_SIM_PATH="$(rospack find sam_stonefish_sim)"
 
 # use the private sims package if available
@@ -87,7 +88,8 @@ SMARC_STONEFISH_WORLDS_PATH="$(rospack find smarc_stonefish_worlds)"
 #CONFIG_FILE="${SAM_STONEFISH_SIM_PATH}/config/${SCENARIO}.yaml"
 WORLD_CONFIG="${SCENARIO}.yaml"
 WORLD_CONFIG_FILE="${SMARC_STONEFISH_WORLDS_PATH}/config/${WORLD_CONFIG}"
-ROBOT_CONFIG="sam_no_payload_sensors.yaml"
+#ROBOT_CONFIG="sam_no_payload_sensors.yaml"
+ROBOT_CONFIG="sam.yaml"
 ROBOT_CONFIG_FILE="${SIM_PKG_PATH}/config/${ROBOT_CONFIG}"
 SCENARIO_DESC="${SMARC_STONEFISH_WORLDS_PATH}/data/scenarios/default.scn"
 
