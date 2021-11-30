@@ -268,35 +268,45 @@
 
     <!--For docking experiments-->
     <light name="dock_center">
-        <specs radius="0.05" cone_angle="30.0" illuminance="10000.0"/>
+        <specs radius="0.01" cone_angle="30.0" illuminance="10000.0"/>
         <color rgb="1.0 1.0 1.0"/>
         <link name="Vehicle"/>
         <origin rpy="0.0 1.5707 0" xyz="1.465 0.0 0.0"/>
     </light>
     <light name="dock_bottom_right">
-        <specs radius="0.05" cone_angle="30.0" illuminance="10000.0"/>
+        <specs radius="0.01" cone_angle="30.0" illuminance="10000.0"/>
         <color rgb="1.0 1.0 1.0"/>
         <link name="Vehicle"/>
         <origin rpy="0.0 1.5707 0" xyz="1.0 -0.33 -0.2575"/>
     </light>
     <light name="dock_bottom_left">
-        <specs radius="0.05" cone_angle="30.0" illuminance="10000.0"/>
+        <specs radius="0.01" cone_angle="30.0" illuminance="10000.0"/>
         <color rgb="1.0 1.0 1.0"/>
         <link name="Vehicle"/>
         <origin rpy="0.0 1.5707 0" xyz="1.0 0.33 -0.2575"/>
     </light>
     <light name="dock_top_left">
-        <specs radius="0.05" cone_angle="30.0" illuminance="10000.0"/>
+        <specs radius="0.01" cone_angle="30.0" illuminance="10000.0"/>
         <color rgb="1.0 1.0 1.0"/>
         <link name="Vehicle"/>
         <origin rpy="0.0 1.5707 0" xyz="1.0 0.33 0.2575 0.0"/>
     </light>
     <light name="dock_top_right">
-        <specs radius="0.05" cone_angle="30.0" illuminance="10000.0"/>
+        <specs radius="0.01" cone_angle="30.0" illuminance="10000.0"/>
         <color rgb="1.0 1.0 1.0"/>
         <link name="Vehicle"/>
         <origin rpy="0.0 1.5707 0" xyz="1.0 -0.33 0.2575"/>
     </light>
+
+    <comm name="USBL" type="usbl" device_id="9">
+        <specs min_vertical_fov="0.0" max_vertical_fov="220.0" range="8000.0"/>
+        <connect device_id="5" occlusion_test="false"/>
+        <autoping rate="1.0"/>
+        <noise range="0.05" horizontal_angle="0.2" vertical_angle="0.5"/>
+        <resolution range="0.01" angle="0.1"/>
+        <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+        <link name="Vehicle"/>
+    </comm>
 
     <world_transform rpy="3.1416 0.0 0.0" xyz="$(arg robot_pos)"/>
 
