@@ -306,6 +306,7 @@
         <resolution range="0.01" angle="0.1"/>
         <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
         <link name="Vehicle"/>
+        <ros_publisher topic="/$(arg robot_name)/sim/usbl"/>
     </comm>
 
     <world_transform rpy="3.1416 0.0 0.0" xyz="$(arg robot_pos)"/>

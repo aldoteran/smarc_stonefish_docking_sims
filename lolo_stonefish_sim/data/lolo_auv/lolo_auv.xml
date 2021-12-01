@@ -285,19 +285,19 @@
 
     <!--Docking experiments-->
 
-    <comm name="USBL" type="usbl" device_id="5">
-        <specs min_vertical_fov="0.0" max_vertical_fov="220.0" range="8000.0"/>
-        <connect device_id="9" occlusion_test="false"/>
-        <autoping rate="1.0"/>
-        <noise range="0.05" horizontal_angle="0.2" vertical_angle="0.5"/>
-        <resolution range="0.01" angle="0.1"/>
-        <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
-        <link name="Vehicle"/>
-    </comm>
+    <!--<comm name="USBL" type="usbl" device_id="5">-->
+        <!--<specs min_vertical_fov="0.0" max_vertical_fov="220.0" range="8000.0"/>-->
+        <!--<connect device_id="9" occlusion_test="false"/>-->
+        <!--<autoping rate="1.0"/>-->
+        <!--<noise range="0.05" horizontal_angle="0.2" vertical_angle="0.5"/>-->
+        <!--<resolution range="0.01" angle="0.1"/>-->
+        <!--<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>-->
+        <!--<link name="Vehicle"/>-->
+    <!--</comm>-->
 
     <sensor name="camera_aft" type="camera" rate="30.0">
         <link name="Vehicle"/>
-        <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+        <origin rpy="-1.5707 0.0 1.5707" xyz="-2.5 0.0 0.33"/>
         <specs resolution_x="1024" resolution_y="720" horizontal_fov="107.0"/>
         <ros_publisher topic="/$(arg robot_name)/sim/camera_aft"/>
     </sensor>
