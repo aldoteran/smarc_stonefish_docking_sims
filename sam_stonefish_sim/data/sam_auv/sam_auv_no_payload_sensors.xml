@@ -257,9 +257,12 @@
         <origin rpy="0.0 1.5707 0" xyz="1.0 -0.33 0.2575"/>
     </light>
 
-    <comm name="Modem" type="acoustic_modem" device_id="9">
+    <comm name="USBL" type="usbl" device_id="5">
         <specs vertical_fov="360.0" horizontal_fov="360.0" range="8000.0"/>
-        <connect device_id="5"/>
+        <connect device_id="9" occlusion_test="true"/>
+        <autoping rate="1.0"/>
+        <noise range="0.05" horizontal_angle="0.2" vertical_angle="0.5"/>
+        <resolution range="0.01" angle="0.1"/>
         <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.5"/>
         <link name="Vehicle"/>
         <ros_publisher topic="/$(arg robot_name)/sim/usbl"/>
