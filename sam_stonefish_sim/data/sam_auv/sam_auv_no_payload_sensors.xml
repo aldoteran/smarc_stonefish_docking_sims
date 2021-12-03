@@ -31,7 +31,7 @@
         <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
         <dimensions xyz="0.2 0.08 0.08"/>
         <material name="Neutral"/>
-        <look name="manipulator"/>	
+        <look name="manipulator"/>
         <mass value="5.0"/>
     </link>
 
@@ -39,7 +39,7 @@
         <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 -0.04"/>
         <dimensions xyz="0.02 0.02 0.02"/>
         <material name="Neutral"/>
-        <look name="manipulator"/>	
+        <look name="manipulator"/>
         <mass value="1.0"/>
     </link>
 
@@ -47,7 +47,7 @@
         <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 -0.04"/>
         <dimensions xyz="0.02 0.02 0.02"/>
         <material name="Neutral"/>
-        <look name="manipulator"/>	
+        <look name="manipulator"/>
         <mass value="1.0"/>
     </link>
 
@@ -55,7 +55,7 @@
         <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
         <dimensions radius="0.001"/>
         <material name="Neutral"/>
-        <look name="manipulator"/>	
+        <look name="manipulator"/>
         <mass value="0.0"/>
     </link>
 
@@ -69,7 +69,7 @@
             <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
         </visual>
         <material name="Neutral"/>
-        <look name="manipulator"/>	
+        <look name="manipulator"/>
         <mass value="0.0"/>
     </link>
 
@@ -132,7 +132,7 @@
         <propeller diameter="0.12" right="true">
             <mesh filename="$(find sam_stonefish_sim)/data/sam_auv/mesh/sam_propeller.obj" scale="1.0"/>
             <material name="Neutral"/>
-            <look name="manipulator"/>	
+            <look name="manipulator"/>
         </propeller>
     </actuator>
 
@@ -143,7 +143,7 @@
         <propeller diameter="0.12" right="false">
             <mesh filename="$(find sam_stonefish_sim)/data/sam_auv/mesh/sam_propeller.obj" scale="1.0"/>
             <material name="Neutral"/>
-            <look name="manipulator"/>	
+            <look name="manipulator"/>
         </propeller>
     </actuator>
 
@@ -152,34 +152,34 @@
         <origin rpy="3.1416 0.0 0.0" xyz="0.3 0.0 0.12"/>
         <specs illuminance="1000.0" cone_angle="10.0" radius="0.1"/>
         <color rgb="0.0 1.0 0.0"/>
-    </light> 
+    </light>
     <light name="StatusLED2">
         <link name="Vehicle"/>
         <origin rpy="3.1416 0.0 0.0" xyz="0.32 0.0 0.12"/>
         <specs illuminance="1000.0" cone_angle="10.0" radius="0.1"/>
         <color rgb="1.0 0.0 0.0"/>
-    </light> 
+    </light>
     <light name="FlashLED">
         <link name="Vehicle"/>
         <origin rpy="0.0 2.5 0.0" xyz="0.2 0.0 -0.12"/>
         <specs illuminance="500.0" cone_angle="60.0" radius="10.0"/>
         <color rgb="1.0 1.0 1.0"/>
-    </light> 
+    </light>
 
     <actuator name="ServoLCG" type="servo">
         <joint name="lcg_joint"/>
         <controller position_gain="0.001" velocity_gain="0.0" max_torque="100.0"/>
-    </actuator> 
+    </actuator>
 
     <actuator name="Servo1" type="servo">
         <joint name="thruster_yaw_joint"/>
         <controller position_gain="0.1" velocity_gain="0.0" max_torque="10.0"/>
-    </actuator> 
+    </actuator>
 
     <actuator name="Servo2" type="servo">
         <joint name="thruster_pitch_joint"/>
         <controller position_gain="0.1" velocity_gain="0.0" max_torque="10.0"/>
-    </actuator> 
+    </actuator>
 
     <!-- Sensors -->
     <sensor name="dynamics" type="odometry" rate="30.0">
@@ -225,10 +225,50 @@
         <ros_publisher topic="/$(arg robot_name)/core/gps"/>
     </sensor>
 
+    <!--For docking experiments-->
+    <light name="dock_center">
+        <specs radius="0.01" cone_angle="30.0" illuminance="10000.0"/>
+        <color rgb="1.0 1.0 1.0"/>
+        <link name="Vehicle"/>
+        <origin rpy="0.0 1.5707 0" xyz="1.465 0.0 0.0"/>
+    </light>
+    <light name="dock_bottom_right">
+        <specs radius="0.01" cone_angle="30.0" illuminance="10000.0"/>
+        <color rgb="1.0 1.0 1.0"/>
+        <link name="Vehicle"/>
+        <origin rpy="0.0 1.5707 0" xyz="1.0 -0.33 -0.2575"/>
+    </light>
+    <light name="dock_bottom_left">
+        <specs radius="0.01" cone_angle="30.0" illuminance="10000.0"/>
+        <color rgb="1.0 1.0 1.0"/>
+        <link name="Vehicle"/>
+        <origin rpy="0.0 1.5707 0" xyz="1.0 0.33 -0.2575"/>
+    </light>
+    <light name="dock_top_left">
+        <specs radius="0.01" cone_angle="30.0" illuminance="10000.0"/>
+        <color rgb="1.0 1.0 1.0"/>
+        <link name="Vehicle"/>
+        <origin rpy="0.0 1.5707 0" xyz="1.0 0.33 0.2575 0.0"/>
+    </light>
+    <light name="dock_top_right">
+        <specs radius="0.01" cone_angle="30.0" illuminance="10000.0"/>
+        <color rgb="1.0 1.0 1.0"/>
+        <link name="Vehicle"/>
+        <origin rpy="0.0 1.5707 0" xyz="1.0 -0.33 0.2575"/>
+    </light>
+
+    <comm name="Modem" type="acoustic_modem" device_id="9">
+        <specs vertical_fov="360.0" horizontal_fov="360.0" range="8000.0"/>
+        <connect device_id="5"/>
+        <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.5"/>
+        <link name="Vehicle"/>
+        <ros_publisher topic="/$(arg robot_name)/sim/usbl"/>
+    </comm>
+
     <world_transform rpy="3.1416 0.0 0.0" xyz="$(arg robot_pos)"/>
 
     <ros_publisher servos="/$(arg robot_name)/joint_states"/>
-    <ros_subscriber thrusters="/$(arg robot_name)/sim/thruster_setpoints" servos="/$(arg robot_name)/desired_joint_states"/> 
+    <ros_subscriber thrusters="/$(arg robot_name)/sim/thruster_setpoints" servos="/$(arg robot_name)/desired_joint_states"/>
     <ros_base_link_transforms publish="$(param simulate_dr)"/>
 </robot>
 </scenario>
