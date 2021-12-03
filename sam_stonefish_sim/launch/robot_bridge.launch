@@ -11,7 +11,7 @@
         <node name="gt_tf" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 gt/$(arg robot_name)/base_link $(arg robot_name)/base_link 100" if="$(arg simulate_dr)"/>
 
         <!-- Republish ground truth odometry msg from sim -->
-        <node name="odom_republish" type="relay" pkg="topic_tools" args="sim/odom dr/odom" output="screen" if="$(arg simulate_dr)"/> 
+        <node name="odom_republish" type="relay" pkg="topic_tools" args="sim/odom dr/odom" output="screen" if="$(arg simulate_dr)"/>
 
         <!-- Robot description -->
         <param name="robot_description" command="$(find xacro)/xacro --inorder '$(arg xacro_file)' debug:=true robot_namespace:=$(arg robot_name)"/>
@@ -20,8 +20,8 @@
         <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" output="screen"/>
 
         <!-- Teleop interface -->
-        <node name="teleop" type="sam_teleop.py" pkg="sam_stonefish_sim" output="screen" if="$(arg with_teleop)"/> 
-    
+        <node name="teleop" type="sam_teleop.py" pkg="sam_stonefish_sim" output="screen" if="$(arg with_teleop)"/>
+
         <!-- VBS Setpoint controller -->
         <include file="$(find sam_stonefish_sim)/launch/vbs_controller.launch">
             <arg name="robot_name" value="$(arg robot_name)"/>
@@ -34,14 +34,14 @@
         </node>
 
         <!-- Simple yaw controller for waypoint navigation -->
-        <!--node name="yaw_controller" type="sim_yaw_controller_node" pkg="sam_stonefish_sim" output="screen">
+        <node name="yaw_controller" type="sim_yaw_controller_node" pkg="sam_stonefish_sim" output="screen">
             <param name="frame_id" value="$(arg robot_name)/base_link"/>
-        </node-->
+        </node>
 
         <!-- Simple action server for waypoint navigation -->
-        <!--node name="waypoint_nav" type="sim_waypoint_nav" pkg="sam_stonefish_sim" output="screen">
+        <node name="waypoint_nav" type="sim_waypoint_nav" pkg="sam_stonefish_sim" output="screen">
             <param name="frame_id" value="$(arg robot_name)/base_link"/>
-        </node-->
+        </node>
 
         <!-- Transfrom STIM imu to ENU coordinates -->
         <include file="$(find sam_stonefish_sim)/launch/ned_to_enu_imu.launch">
@@ -81,7 +81,7 @@
     </include>
 
 <!-- Required to provide "compass" heading since the actual compass is not supported on stonefish ROS -->
-<!--
+
 <node name="gt_odom_provider" type="odom_gt_prov.py" pkg="sam_stonefish_sim" output="screen" ns="$(arg robot_name)">
     <param name="thrust_fb" value="/$(arg robot_name)/core/rpm_fb"/>
     <param name="gt_odom_top" value="/$(arg robot_name)/gt/odom"/>
@@ -89,7 +89,7 @@
     <param name="map_frame" value="map"/>
     <param name="sim_odom_top" value="/$(arg robot_name)/dynamics/odometry"/>
 </node>
--->
+
 
 <!-- The joint state publisher is useful if you just want to move the actuators around -->
 <!--
