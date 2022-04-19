@@ -293,12 +293,25 @@
         <ros_publisher topic="/$(arg robot_name)/sim/usbl"/>
     </comm>
 
-    <sensor name="camera_aft" type="camera" rate="30.0">
-        <link name="Vehicle"/>
+    <link name="camera_aft_link" type="box" physics="submerged">
+        <dimensions xyz="0.1 0.1 0.1"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <material name="Fiberglass"/>
+        <look name="Black"/>
+    </link>
+    <joint name="camera_aft_joint" type="fixed">
+        <parent name="Vehicle"/>
+        <child name="camera_aft_link"/>
         <origin rpy="-1.5707 0.0 1.5707" xyz="-2.5 0.0 0.33"/>
+    </joint>
+    <sensor name="camera_aft" type="camera" rate="30.0">
+        <link name="camera_aft_link"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
         <specs resolution_x="1024" resolution_y="720" horizontal_fov="107.0"/>
         <ros_publisher topic="/$(arg robot_name)/sim/camera_aft"/>
     </sensor>
+
+    <!--Lookinf for the offset-->
 
     <world_transform rpy="3.1416 0.0 1.57" xyz="$(arg robot_pos)"/>
 
