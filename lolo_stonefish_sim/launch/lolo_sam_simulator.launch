@@ -3,11 +3,11 @@
     <arg name="lolo_name" default="lolo"/>
     <arg name="sam_name" default="sam"/>
 
-    <arg name="lolo_xacro_file" default="$(find lolo_description)/urdf/lolo_auv.urdf.xacro"/>
-    <arg name="sam_xacro_file" default="$(find sam_description)/urdf/sam_auv.urdf.xacro"/>
+    <arg name="lolo_xacro_file" default="$(find lolo_stonefish_sim)/data/lolo_auv/lolo_auv.urdf.xacro"/>
+    <arg name="sam_xacro_file" default="$(find sam_stonefish_sim)/data/sam_auv/sam_auv.urdf.xacro"/>
 
-    <arg name="with_teleop" default="false"/>
-    <arg name="simulate_dr" default="false"/>
+    <arg name="with_teleop" default="true"/>
+    <arg name="simulate_dr" default="true"/>
 
     <!-- These are the arguments you need to care about -->
     <!--<arg name="world_config" default="biograd_world.yaml"/>-->
