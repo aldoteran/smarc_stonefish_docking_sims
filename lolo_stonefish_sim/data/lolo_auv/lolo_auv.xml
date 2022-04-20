@@ -253,7 +253,7 @@
         <ros_publisher topic="/$(arg robot_name)/sim/odom"/>
     </sensor>
 
-    <sensor name="imu_link_ned" type="imu" rate="20.0">
+    <sensor name="imu_link_ned" type="imu" rate="200.0">
         <link name="Vehicle"/>
         <origin rpy="0.0 0.0 0.0" xyz="0.9 0.0 0.0"/>
         <noise angle="0.000001745" angular_velocity="0.00001745"/>
