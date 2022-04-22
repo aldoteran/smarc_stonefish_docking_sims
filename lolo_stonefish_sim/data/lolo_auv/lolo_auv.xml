@@ -247,8 +247,9 @@
 
 
     <!-- Sensors -->
-    <sensor name="dynamics" type="odometry" rate="30.0">
+    <sensor name="base_link" type="odometry" rate="30.0">
         <link name="Vehicle"/>
+        <noise position="0.05" velocity="0.01" angle="0.1" angular_velocity="0.05"/>
         <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
         <ros_publisher topic="/$(arg robot_name)/sim/odom"/>
     </sensor>
