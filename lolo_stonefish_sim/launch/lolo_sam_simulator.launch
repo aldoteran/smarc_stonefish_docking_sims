@@ -51,4 +51,8 @@
         <arg name="simulate_dr" value="$(arg simulate_dr)"/>
     </include>
 
+    <!--For docking simulations-->
+    <include file="$(find optical_uw_docking)/launch/dr_republisher.launch"/>
+    <include file="$(find optical_uw_docking)/launch/usbl_driver.launch"/>
+
 </launch>
