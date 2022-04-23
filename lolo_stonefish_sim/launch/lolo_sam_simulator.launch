@@ -44,12 +44,12 @@
         <arg name="with_teleop" value="$(arg with_teleop)"/>
     </include>
 
-    <include file="$(find sam_stonefish_sim)/launch/robot_bridge.launch">
-        <arg name="robot_name" value="$(arg sam_name)"/>
-        <arg name="xacro_file" value="$(arg sam_xacro_file)"/>
-        <arg name="with_teleop" value="$(arg with_teleop)"/>
-        <arg name="simulate_dr" value="$(arg simulate_dr)"/>
-    </include>
+    <!--<include file="$(find sam_stonefish_sim)/launch/robot_bridge.launch">-->
+        <!--<arg name="robot_name" value="$(arg sam_name)"/>-->
+        <!--<arg name="xacro_file" value="$(arg sam_xacro_file)"/>-->
+        <!--<arg name="with_teleop" value="$(arg with_teleop)"/>-->
+        <!--<arg name="simulate_dr" value="$(arg simulate_dr)"/>-->
+    <!--</include>-->
 
     <!--For docking simulations-->
     <include file="$(find optical_uw_docking)/launch/dr_republisher.launch"/>
