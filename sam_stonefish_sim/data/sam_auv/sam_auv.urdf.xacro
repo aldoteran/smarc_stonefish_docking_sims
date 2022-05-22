@@ -62,6 +62,9 @@
   <link name="$(arg robot_namespace)/docking_station_link">
   </link>
 
+  <link name="$(arg robot_namespace)/usbl_link">
+  </link>
+
   <joint name="$(arg robot_namespace)/multibeam_down_joint" type="fixed">
     <parent link="$(arg robot_namespace)/base_link"/>
     <child link="$(arg robot_namespace)/multibeam_down_link"/>
@@ -167,6 +170,12 @@
     <parent link="$(arg robot_namespace)/base_link"/>
     <child link="$(arg robot_namespace)/docking_station_link"/>
     <origin rpy="-1.5708 0 1.5708" xyz="-0.045 -0.0025 0.0"/>
+  </joint>
+
+  <joint name="$(arg robot_namespace)/usbl_joint" type="fixed">
+    <parent link="$(arg robot_namespace)/base_link"/>
+    <child link="$(arg robot_namespace)/usbl_link"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
   </joint>
 
 </robot>
