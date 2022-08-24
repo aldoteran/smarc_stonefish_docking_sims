@@ -235,31 +235,31 @@
 
     <!--For docking experiments-->
     <light name="dock_center">
-        <specs radius="0.1" illuminance="10000.0"/>
+        <specs radius="0.05" cone_angle="135.0" illuminance="1500.0"/>
         <color rgb="1.0 1.0 1.0"/>
         <link name="Vehicle"/>
         <origin rpy="0.0 1.5707 0" xyz="1.465 0.0 0.0"/>
     </light>
     <light name="dock_bottom_right">
-        <specs radius="0.1" illuminance="10000.0"/>
+        <specs radius="0.05" cone_angle="135.0" illuminance="1500.0"/>
         <color rgb="1.0 1.0 1.0"/>
         <link name="Vehicle"/>
         <origin rpy="0.0 1.5707 0" xyz="1.0 -0.33 -0.2575"/>
     </light>
     <light name="dock_bottom_left">
-        <specs radius="0.1" illuminance="10000.0"/>
+        <specs radius="0.05" cone_angle="135.0" illuminance="1500.0"/>
         <color rgb="1.0 1.0 1.0"/>
         <link name="Vehicle"/>
         <origin rpy="0.0 1.5707 0" xyz="1.0 0.33 -0.2575"/>
     </light>
     <light name="dock_top_left">
-        <specs radius="0.1" illuminance="10000.0"/>
+        <specs radius="0.05" cone_angle="135.0" illuminance="1500.0"/>
         <color rgb="1.0 1.0 1.0"/>
         <link name="Vehicle"/>
         <origin rpy="0.0 1.5707 0" xyz="1.0 0.33 0.2575 0.0"/>
     </light>
     <light name="dock_top_right">
-        <specs radius="0.1" illuminance="10000.0"/>
+        <specs radius="0.05" cone_angle="135.0" illuminance="1500.0"/>
         <color rgb="1.0 1.0 1.0"/>
         <link name="Vehicle"/>
         <origin rpy="0.0 1.5707 0" xyz="1.0 -0.33 0.2575"/>
