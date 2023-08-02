@@ -1,0 +1,25 @@
+<launch>
+    <param name="/target_rpm"       value="1000"/>
+    <param name="/target_heading"   value="-0.7854"/>
+    <param name="/target_depth"     value="5"/>
+    <param name="/target_vbs"       value="100.0"/>
+    <param name="/target_lcg"       value="50.0"/>
+
+    <param name="/p_coefficient"    value="0.03"/>
+    <param name="/i_coefficient"    value="0.0001"/>
+    <param name="/d_coefficient"    value="0."/>
+
+    <param name="/thruster1_topic"         value="sam/core/thruster1_cmd"/>
+    <param name="/thruster2_topic"         value="sam/core/thruster2_cmd"/>
+    <param name="/heading_setpoint_topic"  value="sam/ctrl/yaw_setpoint"/>
+    <param name="/thrust_vector_topic"     value="sam/core/thrust_vector_cmd"/>
+    <param name="/horizontal_thrust_topic" value="sam/core/horizontal_thrust_cmd"/>
+    <param name="/odom_topic"              value="sam/sim/odom"/>
+
+    <param name="/vbs_cmd_topic" value="sam/core/vbs_cmd"/>
+    <param name="/lcg_cmd_topic" value="sam/core/lcg_cmd"/>
+
+    <node name="sam_chaser_controller" pkg="sam_stonefish_sim"
+        type="sam_chaser_controller.py" output="screen"/>
+
+</launch>

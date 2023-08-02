@@ -1,0 +1,26 @@
+<launch>
+    <param name="/target_rpm"       value="2000"/>
+    <param name="/target_heading"   value="-0.7854"/>
+    <param name="/target_depth"     value="5"/>
+    <param name="/target_vbs"       value="0.2"/>
+
+    <param name="/p_coefficient"    value="0.5"/>
+    <param name="/i_coefficient"    value="0.000001"/>
+    <param name="/d_coefficient"    value="0."/>
+
+    <param name="/thruster_stbd_topic"    value="lolo/core/thruster1_cmd"/>
+    <param name="/thruster_port_topic"    value="lolo/core/thruster2_cmd"/>
+    <param name="/heading_setpoint_topic" value="lolo/ctrl/yaw_setpoint"/>
+    <param name="/elevator_cmd_topic"     value="lolo/core/elevator_cmd"/>
+    <param name="/lolo_odom_topic"        value="lolo/sim/odom"/>
+
+
+    <param name="/vbs_front_stbd_topic" value="lolo/sim/vbs_front_stbd/setpoint"/>
+    <param name="/vbs_front_port_topic" value="lolo/sim/vbs_front_port/setpoint"/>
+    <param name="/vbs_back_stbd_topic"  value="lolo/sim/vbs_back_stbd/setpoint"/>
+    <param name="/vbs_back_port_topic"  value="lolo/sim/vbs_back_port/setpoint"/>
+
+    <node name="lolo_target_controller" pkg="lolo_stonefish_sim"
+        type="lolo_target_controller.py" output="screen"/>
+
+</launch>
