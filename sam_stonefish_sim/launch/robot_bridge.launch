@@ -3,14 +3,13 @@
     <arg name="robot_name" default="sam"/>
     <!--<arg name="xacro_file" default="$(find sam_description)/urdf/sam_auv.urdf.xacro"/>-->
     <arg name="xacro_file" default="$(find sam_stonefish_sim)/data/sam_auv/sam_auv.urdf.xacro"/>
-    <arg name="with_teleop" default="false"/>
+    <arg name="with_teleop" default="true"/>
     <arg name="simulate_dr" default="true"/>
 
     <group ns="$(arg robot_name)">
 
-        <!-- Use the ground truth TF transform from sim -->
-        <node name="gt_tf" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 gt/$(arg robot_name)/base_link $(arg robot_name)/base_link 100" if="$(arg simulate_dr)"/>
-        <!--<node name="gt_to_sam" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 gt/$(arg robot_name)/base_link $(arg robot_name)/base_link 100"/>-->
+        <!--Robot's ground truth has an offset wrt to simulated robot frame, check xml file.-->
+        <node name="gt_tf" pkg="tf" type="static_transform_publisher" args="-0.625 0 0.04 0 0 0 gt/$(arg robot_name)/base_link $(arg robot_name)/base_link 100" if="$(arg simulate_dr)"/>
 
         <!-- Republish ground truth odometry msg from sim -->
         <node name="odom_republish" type="relay" pkg="topic_tools" args="sim/odom dr/odom" output="screen" if="$(arg simulate_dr)"/>
