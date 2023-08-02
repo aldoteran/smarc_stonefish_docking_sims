@@ -15,7 +15,7 @@
             <look name="yellow"/>
             <compound_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
             <mass value="135.0"/>
-            <!-- <cg xyz="-0.419064 0.002501 0.000001" rpy="0.0 0.0 0.0"/> -->
+             <!--<cg xyz="-0.419064 0.002501 0.000001" rpy="0.0 0.0 0.0"/>-->
         </external_part>
         <!--
         <internal_part name="WeightCylinder" type="cylinder" physics="submerged" buoyant="true">
@@ -291,31 +291,77 @@
     </sensor>
 
     <!-- For docking experiments-->
-    <comm name="Modem" type="acoustic_modem" device_id="9">
+
+    <light name="dock_center">
+        <specs radius="0.05" cone_angle="135.0" illuminance="1500.0"/>
+        <color rgb="1.0 1.0 1.0"/>
+        <link name="Vehicle"/>
+        <origin rpy="0.0 1.5707 0" xyz="2.965 0.0 0.0"/>
+    </light>
+    <light name="dock_bottom_right">
+        <specs radius="0.05" cone_angle="135.0" illuminance="1500.0"/>
+        <color rgb="1.0 1.0 1.0"/>
+        <link name="Vehicle"/>
+        <origin rpy="0.0 1.5707 0" xyz="2.5 -0.33 -0.2575"/>
+    </light>
+    <light name="dock_bottom_left">
+        <specs radius="0.05" cone_angle="135.0" illuminance="1500.0"/>
+        <color rgb="1.0 1.0 1.0"/>
+        <link name="Vehicle"/>
+        <origin rpy="0.0 1.5707 0" xyz="2.5 0.33 -0.2575"/>
+    </light>
+    <light name="dock_top_left">
+        <specs radius="0.05" cone_angle="135.0" illuminance="1500.0"/>
+        <color rgb="1.0 1.0 1.0"/>
+        <link name="Vehicle"/>
+        <origin rpy="0.0 1.5707 0" xyz="2.5 0.33 0.2575 0.0"/>
+    </light>
+    <light name="dock_top_right">
+        <specs radius="0.05" cone_angle="135.0" illuminance="1500.0"/>
+        <color rgb="1.0 1.0 1.0"/>
+        <link name="Vehicle"/>
+        <origin rpy="0.0 1.5707 0" xyz="2.5 -0.33 0.2575"/>
+    </light>
+
+    <!--USBL modem-->
+    <comm name="usbl_link" type="usbl" device_id="5">
         <specs vertical_fov="360.0" horizontal_fov="360.0" range="8000.0"/>
-        <connect device_id="5"/>
-        <origin rpy="0.0 0.0 0.0" xyz="0.389 0.002 0.337"/>
+        <connect device_id="9" occlusion_test="true"/>
+        <autoping rate="1.0"/>
+        <noise range="0.05" horizontal_angle="0.2" vertical_angle="0.5"/>
+        <resolution range="0.01" angle="0.1"/>
+        <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.5"/>
         <link name="Vehicle"/>
         <ros_publisher topic="/$(arg robot_name)/sim/usbl"/>
     </comm>
 
-    <link name="camera_aft_link" type="box" physics="submerged">
-        <dimensions xyz="0.1 0.1 0.1"/>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
-        <material name="Fiberglass"/>
-        <look name="Black"/>
-    </link>
-    <joint name="camera_aft_joint" type="fixed">
-        <parent name="Vehicle"/>
-        <child name="camera_aft_link"/>
-        <origin rpy="-1.5707 0.0 1.5707" xyz="0.0 0.0 0.33"/>
-    </joint>
-    <sensor name="camera_aft" type="camera" rate="30.0">
-        <link name="camera_aft_link"/>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
-        <specs resolution_x="1024" resolution_y="720" horizontal_fov="107.0"/>
-        <ros_publisher topic="/$(arg robot_name)/sim/camera_aft"/>
-    </sensor>
+    <!--Transponder only, moved to SAM-->
+    <!--<comm name="Modem" type="acoustic_modem" device_id="9">-->
+        <!--<specs vertical_fov="360.0" horizontal_fov="360.0" range="8000.0"/>-->
+        <!--<connect device_id="5"/>-->
+        <!--<origin rpy="0.0 0.0 0.0" xyz="0.389 0.002 0.337"/>-->
+        <!--<link name="Vehicle"/>-->
+        <!--<ros_publisher topic="/$(arg robot_name)/sim/usbl"/>-->
+    <!--</comm>-->
+
+    <!--Moving camera to SAM.-->
+    <!--<link name="camera_aft_link" type="box" physics="submerged">-->
+        <!--<dimensions xyz="0.1 0.1 0.1"/>-->
+        <!--<origin xyz="0 0 0" rpy="0 0 0"/>-->
+        <!--<material name="Fiberglass"/>-->
+        <!--<look name="Black"/>-->
+    <!--</link>-->
+    <!--<joint name="camera_aft_joint" type="fixed">-->
+        <!--<parent name="Vehicle"/>-->
+        <!--<child name="camera_aft_link"/>-->
+        <!--<origin rpy="-1.5707 0.0 1.5707" xyz="0.0 0.0 0.33"/>-->
+    <!--</joint>-->
+    <!--<sensor name="camera_aft" type="camera" rate="30.0">-->
+        <!--<link name="camera_aft_link"/>-->
+        <!--<origin xyz="0 0 0" rpy="0 0 0"/>-->
+        <!--<specs resolution_x="1024" resolution_y="720" horizontal_fov="107.0"/>-->
+        <!--<ros_publisher topic="/$(arg robot_name)/sim/camera_aft"/>-->
+    <!--</sensor>-->
     <!--End for docking experiments.-->
 
     <!--Lookinf for the offset-->
