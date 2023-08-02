@@ -1,0 +1,9 @@
+<launch>
+    <param name="usbl_out_topic" value="/sam/sim/usbl"/>
+    <param name="usbl_in_topic" value="/lolo/sim/usbl"/>
+    <param name="usbl_frame_id" value="/lolo/usbl_link"/>
+
+    <node name="chaser_usbl_driver" pkg="lolo_stonefish_sim" type="chaser_usbl_driver"
+        output="screen"/>
+
+</launch>

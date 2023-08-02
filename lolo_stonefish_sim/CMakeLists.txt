@@ -134,6 +134,7 @@ include_directories(
 ## The recommended prefix ensures that target names across packages don't collide
 add_executable(lolo_sim_msg_bridge src/lolo_sim_msg_bridge.cpp)
 add_executable(sim_yaw_controller_node src/sim_yaw_controller_node.cpp)
+add_executable(chaser_usbl_driver src/chaser_usbl_driver.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -145,6 +146,7 @@ add_executable(sim_yaw_controller_node src/sim_yaw_controller_node.cpp)
 ## same as for the library above
 add_dependencies(lolo_sim_msg_bridge ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 add_dependencies(sim_yaw_controller_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(chaser_usbl_driver ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
 target_link_libraries(lolo_sim_msg_bridge
@@ -152,6 +154,10 @@ target_link_libraries(lolo_sim_msg_bridge
 )
 
 target_link_libraries(sim_yaw_controller_node
+  ${catkin_LIBRARIES}
+)
+
+target_link_libraries(chaser_usbl_driver
   ${catkin_LIBRARIES}
 )
 
@@ -168,12 +174,13 @@ install(PROGRAMS
   scripts/bringup.sh
   scripts/lolo_sam_bringup.sh
   scripts/lolo_teleop.py
+  script/lolo_target_controller.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
 ## Mark executables for installation
 ## See http://docs.ros.org/melodic/api/catkin/html/howto/format1/building_executables.html
-install(TARGETS lolo_sim_msg_bridge sim_yaw_controller_node
+install(TARGETS lolo_sim_msg_bridge sim_yaw_controller_node chaser_usbl_driver
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
