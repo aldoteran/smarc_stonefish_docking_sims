@@ -12,11 +12,13 @@
 #
 # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+# Modified by Aldo Teran (aldot@kth.se)
+
 import pygame
 from pygame.constants import K_LEFT, K_RIGHT, K_UP, K_DOWN, K_w, K_s
 import rospy
 #from uuv_gazebo_ros_plugins_msgs.msg import FloatStamped
-from std_msgs.msg import Header
+from std_msgs.msg import Header, Bool
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge, CvBridgeError
 #from cola2_msgs.msg import Setpoints
@@ -47,6 +49,7 @@ class TeleopServer(object):
         self.thruster_angles = rospy.Publisher('core/thrust_vector_cmd', ThrusterAngles, queue_size=10)
         self.thruster1_rpms = rospy.Publisher('core/thruster1_cmd', ThrusterRPM, queue_size=10)
         self.thruster2_rpms = rospy.Publisher('core/thruster2_cmd', ThrusterRPM, queue_size=10)
+        self.teleop_flag = rospy.Publisher('core/is_teleop', Bool, queue_size=10)
 
         rospy.Subscriber("/sam_auv/camera_thruster/camera_image", Image, self.callback)
 
@@ -67,10 +70,14 @@ class TeleopServer(object):
                 screen.blit(self.surface, (0, 0))
             pygame.display.update()
 
-            keys = pygame.key.get_pressed()
             self.joint_z_angle = 0. # top
             self.joint_y_angle = 0. # left
-            thrust = 0.
+
+            keys = pygame.key.get_pressed()
+            if not any(keys):
+                pygame.event.pump()
+                clock.tick(20)
+                continue
 
             if keys[K_LEFT]:
                 self.joint_z_angle = -joint_angle
@@ -95,5 +102,5 @@ class TeleopServer(object):
             clock.tick(20)
 
 if __name__ == "__main__":
-    
+
     teleop = TeleopServer()

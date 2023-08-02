@@ -18,6 +18,9 @@ private:
     double max_thruster_angle;
     std::string frame_id;
 
+    // Integrator.
+    double integrator = 0.0;
+
     // subscribers
     ros::Subscriber setpoint_sub;
 
@@ -51,16 +54,29 @@ public:
 
         Eigen::Affine3d transform_matrix = tf2::transformToEigen(transformStamped);
 
-        Eigen::Vector3d euler_angles = transform_matrix.rotation().eulerAngles(2, 1, 0); 
+        Eigen::Vector3d euler_angles = transform_matrix.rotation().eulerAngles(2, 1, 0);
 
         Eigen::Vector2d goal_dir(cos(yaw.data), sin(yaw.data));
-        Eigen::Vector2d vehicle_frame = transform_matrix.rotation().topLeftCorner<2, 2>().transpose()*goal_dir;
+        Eigen::Vector2d vehicle_frame =
+            transform_matrix.rotation().topLeftCorner<2, 2>().transpose() *
+            goal_dir;
+
         double yaw_offset = atan2(vehicle_frame[1], vehicle_frame[0]);
-        //ROS_INFO("Yaw setpoint: %f, current angle: %f, offset: %f", 180./M_PI*yaw.data, 180./M_PI*euler_angles(0), 180./M_PI*yaw_offset);
+        // FIXME(aldoteran): error over node frequency?
+        integrator = integrator + (yaw_offset / 10);
+
+        //ROS_INFO("Yaw setpoint: %f, current angle: %f, offset: %f",
+                 //180. / M_PI * yaw.data, 180. / M_PI * euler_angles(0),
+                 //180. / M_PI * yaw_offset);
 
         // 0.1 radians per PI radian offset
         std_msgs::Float32 angles;
-        angles.data = std::min(max_thruster_angle, std::max(-max_thruster_angle, -1.*yaw_offset));
+        //angles.data = std::min(max_thruster_angle,
+                               //std::max(-max_thruster_angle, -1. * yaw_offset));
+        angles.data =
+            std::min(max_thruster_angle,
+                     std::max(-max_thruster_angle,
+                              -1. * yaw_offset - 0.1 * integrator));
         rudder_pub.publish(angles);
     }
 };
