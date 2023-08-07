@@ -1,5 +1,5 @@
 <launch>
-    <param name="/target_rpm"       value="2000"/>
+    <param name="/target_rpm"       value="8000"/>
     <param name="/target_heading"   value="-0.7854"/>
     <param name="/target_depth"     value="5"/>
     <param name="/target_vbs"       value="0.2"/>

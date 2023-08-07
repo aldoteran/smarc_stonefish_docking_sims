@@ -28,6 +28,7 @@
   <link name="$(arg robot_namespace)/usbl_link"/>
   <!--For docking experiments.-->
   <link name="$(arg robot_namespace)/camera_link"/>
+  <link name="$(arg robot_namespace)/docking_link"/>
   <!--End For docking experiments.-->
 
   <link name="$(arg robot_namespace)/elevator">
@@ -217,6 +218,12 @@
     <origin rpy="-1.5707 0.0 1.5707" xyz="0.0 0.0 0.33"/>
     <parent link="$(arg robot_namespace)/base_link"/>
     <child link="$(arg robot_namespace)/camera_link"/>
+  </joint>
+
+  <joint name="$(arg robot_namespace)/docking_joint" type="fixed">
+    <origin rpy="-1.5707 0.0 1.5707" xyz="2.5 0.0 0.0"/>
+    <parent link="$(arg robot_namespace)/base_link"/>
+    <child link="$(arg robot_namespace)/docking_link"/>
   </joint>
   <!--End for docking experiments.-->
 

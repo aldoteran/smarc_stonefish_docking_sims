@@ -314,7 +314,7 @@
         <specs radius="0.05" cone_angle="135.0" illuminance="1500.0"/>
         <color rgb="1.0 1.0 1.0"/>
         <link name="Vehicle"/>
-        <origin rpy="0.0 1.5707 0" xyz="2.5 0.33 0.2575 0.0"/>
+        <origin rpy="0.0 1.5707 0" xyz="2.5 0.33 0.2575"/>
     </light>
     <light name="dock_top_right">
         <specs radius="0.05" cone_angle="135.0" illuminance="1500.0"/>
