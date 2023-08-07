@@ -60,8 +60,8 @@
   <link name="$(arg robot_namespace)/camera_front_left_link"/>
 
   <!--Fod docking experiments.-->
-  <link name="$(arg robot_namespace)/docking_station_link"/>
   <link name="$(arg robot_namespace)/usbl_link"/>
+  <link name="$(arg robot_namespace)/camera_link"/>
   <!--End For docking experiments.-->
 
   <joint name="$(arg robot_namespace)/thruster_yaw_joint" type="revolute">
@@ -180,16 +180,16 @@
   </joint>
 
   <!--Fod docking experiments.-->
-  <joint name="$(arg robot_namespace)/docking_station_joint" type="fixed">
-    <parent link="$(arg robot_namespace)/base_link"/>
-    <child link="$(arg robot_namespace)/docking_station_link"/>
-    <origin rpy="-1.5708 0 1.5708" xyz="1.0 0.0 0.0"/>
-  </joint>
-
   <joint name="$(arg robot_namespace)/usbl_joint" type="fixed">
     <parent link="$(arg robot_namespace)/base_link"/>
     <child link="$(arg robot_namespace)/usbl_link"/>
     <origin rpy="0 0 0" xyz="0 0 0"/>
+  </joint>
+
+  <joint name="$(arg robot_namespace)/camera_joint" type="fixed">
+    <parent link="$(arg robot_namespace)/base_link"/>
+    <child link="$(arg robot_namespace)/camera_link"/>
+    <origin rpy="-1.5707 0 1.5707" xyz="0 0 0.10"/>
   </joint>
   <!--End For docking experiments.-->
 
