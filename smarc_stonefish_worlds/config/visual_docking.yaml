@@ -1,0 +1,17 @@
+environment_file: "$(find smarc_stonefish_worlds)/data/visual_docking/docking_env.scn"
+latitude: "58.250833"
+longitude: "11.450283"
+mesh: {
+    anchoring_buoy_rope: "$(find smarc_stonefish_worlds)/data/visual_docking/components/anchoring_chain.obj",
+    a0_buoy: "$(find smarc_stonefish_worlds)/data/visual_docking/components/a0_buoy.obj",
+    rope: "$(find smarc_stonefish_worlds)/data/visual_docking/components/a0_buoy_ropes_small_farm.obj"
+}
+marked_positions: {
+    buoy_corner1: {position: "4.00 -5.00 0.00", orientation: "0.00 0.00 0.00", color: "white", mesh: "a0_buoy"},
+    buoy_corner2: {position: "4.00 5.00 0.00", orientation: "0.00 0.00 0.00", color: "white", mesh: "a0_buoy"},
+    buoy_corner3: {position: "14.00 -5.00 0.00", orientation: "0.00 0.00 0.00", color: "red", mesh: "a0_buoy"},
+    buoy_corner4: {position: "14.00 5.00 0.00", orientation: "0.00 0.00 0.00", color: "red", mesh: "a0_buoy"},
+    buoy_mid1: {position: "9.00 -5.00 0.00", orientation: "0.00 0.00 0.00", color: "white", mesh: "a0_buoy"},
+    buoy_mid2: {position: "9.00 5.00 0.00", orientation: "0.00 0.00 0.00", color: "white", mesh: "a0_buoy"},
+    light_center: {position: "5.00 3.00 1.00", orientation: "0.00 -1.5708 0.00"}
+}

@@ -21,10 +21,11 @@
     <arg name="shader_path" default="$(find stonefish_ros)/external/stonefish/Library/shaders"/>
 
     <param name="utm_zone" type="int" value="$(arg utm_zone)"/>
-    <param name="utm_band" type="string" value="$(arg utm_band)"/> 
+    <param name="utm_band" type="string" value="$(arg utm_band)"/>
 
-    <!-- Static transform -->
+    <!-- Static transforms -->
     <node name="map2ned" pkg="tf" type="static_transform_publisher" args="0 0 0 1.571 0 3.1416 $(arg map_frame) world_ned 100"/>
+    <node name="map2ds" pkg="tf" type="static_transform_publisher" args="20.25 0 1.5 1.5707 0 1.5707 world_ned gt/station 100"/>
     <!--
     <node name="utm2map" pkg="tf" type="static_transform_publisher" args="535529 4864397 0 0 0 0 1 utm map 100" />
     -->

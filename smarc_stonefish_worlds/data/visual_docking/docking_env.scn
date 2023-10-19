@@ -1,0 +1,263 @@
+<?xml version="1.0"?>
+<scenario>
+<environment>
+    <ned latitude="$(param latitude)" longitude="$(param longitude)"/>
+    <sun azimuth="20.0" elevation="50.0"/>
+    <ocean enabled="false" waves="0.0"/>
+    <!---
+    <ocean>
+        <water density="1031.0" jerlov="0.2"/>
+        <waves height="0.0"/>
+        <particles enabled="true"/>
+        <current type="uniform">
+            <velocity xyz="0.0 0.0 0.0"/>
+        </current>
+    </ocean>
+    -->
+</environment>
+
+<materials>
+    <material name="Neutral" density="1000.0" restitution="0.5"/>
+    <material name="Rock" density="3000.0" restitution="0.8"/>
+    <material name="Fiberglass" density="1500.0" restitution="0.3"/>
+    <material name="Aluminium" density="2710.0" restitution="0.7"/>
+    <friction_table>
+        <friction material1="Neutral" material2="Neutral" static="0.5" dynamic="0.2"/>
+        <friction material1="Neutral" material2="Rock" static="0.2" dynamic="0.1"/>
+        <friction material1="Neutral" material2="Fiberglass" static="0.5" dynamic="0.2"/>
+        <friction material1="Neutral" material2="Aluminium" static="0.5" dynamic="0.2"/>
+        <friction material1="Rock" material2="Rock" static="0.9" dynamic="0.7"/>
+        <friction material1="Rock" material2="Fiberglass" static="0.6" dynamic="0.4"/>
+        <friction material1="Rock" material2="Aluminium" static="0.6" dynamic="0.3"/>
+        <friction material1="Fiberglass" material2="Fiberglass" static="0.5" dynamic="0.2"/>
+        <friction material1="Fiberglass" material2="Aluminium" static="0.5" dynamic="0.2"/>
+        <friction material1="Aluminium" material2="Aluminium" static="0.8" dynamic="0.5"/>
+    </friction_table>
+</materials>
+
+<looks>
+    <look name="white" gray="0.95" roughness="0.2"/>
+    <look name="black" gray="0.05" roughness="0.2"/>
+    <look name="red" rgb="1.0 0.0 0.0" roughness="0.2"/>
+    <look name="yellow" rgb="1.0 0.9 0.0" roughness="0.3"/>
+    <look name="seabed" rgb="0.7 0.7 0.5" roughness="0.9"/>
+    <look name="manipulator" rgb="0.2 0.15 0.1" roughness="0.6" metalness="0.8"/>
+</looks>
+
+<static name="Seafloor" type="plane">
+    <material name="Rock"/>
+    <look name="seabed"/>
+    <world_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 15.0"/>
+</static>
+
+
+<!-- Begin: Docking station -->
+<light name="Light_Center">
+    <specs radius="0.1" cone_angle="180.0" illuminance="2000.0"/>
+    <color temperature="5600.0"/>
+    <link name="Link1"/>
+    <!--world_transform xyz="$(param marked_positions/light_center/position)" rpy="$(param marked_positions/light_center/orientation)"/-->
+    <world_transform xyz="20.0 0.0 1.5" rpy="0.0 -1.5708 0.0"/>
+    <!--<world_transform xyz="20.0 0.0 0" rpy="0.0 -1.5708 0.0"/>-->
+</light>
+
+<static name="Light_Center_Buoy" type="model">
+    <look name="yellow"/>
+	<material name="Neutral"/>
+    <world_transform xyz="20.25 0.0 1.5" rpy="0.0 -1.5708 0.0"/>
+    <!--<world_transform xyz="20.25 0.0 0" rpy="0.0 -1.5708 0.0"/>-->
+	<physical>
+		<mesh filename="$(param mesh/a0_buoy)" scale="0.5"/>
+		<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+	</physical>
+</static>
+
+<light name="Light_Top_Left">
+    <specs radius="0.1" cone_angle="180.0" illuminance="2000.0"/>
+    <color temperature="5600.0"/>
+    <link name="Link1"/>
+    <!--world_transform xyz="$(param marked_positions/light_center/position)" rpy="$(param marked_positions/light_center/orientation)"/-->
+    <world_transform xyz="20.25 -0.25 1.25" rpy="0.0 -1.5708 0.0"/>
+    <!--<world_transform xyz="20.25 -0.25 0.25" rpy="0.0 -1.5708 0.0"/>-->
+</light>
+
+<static name="Light_Top_Left_Buoy" type="model">
+    <look name="yellow"/>
+	<material name="Neutral"/>
+    <world_transform xyz="20.50 -0.25 1.25" rpy="0.0 -1.5708 0.0"/>
+    <!--<world_transform xyz="20.50 -0.25 0.25" rpy="0.0 -1.5708 0.0"/>-->
+	<physical>
+		<mesh filename="$(param mesh/a0_buoy)" scale="0.5"/>
+		<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+	</physical>
+</static>
+
+<light name="Light_Top_Right">
+    <specs radius="0.1" cone_angle="180.0" illuminance="2000.0"/>
+    <color temperature="5600.0"/>
+    <link name="Link1"/>
+    <!--world_transform xyz="$(param marked_positions/light_center/position)" rpy="$(param marked_positions/light_center/orientation)"/-->
+    <world_transform xyz="20.25 0.25 1.25" rpy="0.0 -1.5708 0.0"/>
+    <!--<world_transform xyz="20.25 0.25 0.25" rpy="0.0 -1.5708 0.0"/>-->
+</light>
+
+<static name="Light_Top_Right_Buoy" type="model">
+    <look name="yellow"/>
+	<material name="Neutral"/>
+    <world_transform xyz="20.50 0.25 1.25" rpy="0.0 -1.5708 0.0"/>
+    <!--<world_transform xyz="20.50 0.25 0.25" rpy="0.0 -1.5708 0.0"/>-->
+	<physical>
+		<mesh filename="$(param mesh/a0_buoy)" scale="0.5"/>
+		<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+	</physical>
+</static>
+
+<light name="Light_Bottom_Left">
+    <specs radius="0.1" cone_angle="180.0" illuminance="2000.0"/>
+    <color temperature="5600.0"/>
+    <link name="Link1"/>
+    <!--world_transform xyz="$(param marked_positions/light_center/position)" rpy="$(param marked_positions/light_center/orientation)"/-->
+    <world_transform xyz="20.25 -0.25 1.75" rpy="0.0 -1.5708 0.0"/>
+    <!--<world_transform xyz="20.25 -0.25 -0.25" rpy="0.0 -1.5708 0.0"/>-->
+</light>
+
+<static name="Light_Bottom_Left_Buoy" type="model">
+    <look name="yellow"/>
+	<material name="Neutral"/>
+    <world_transform xyz="20.50 -0.25 1.75" rpy="0.0 -1.5708 0.0"/>
+    <!--<world_transform xyz="20.50 -0.25 -0.25" rpy="0.0 -1.5708 0.0"/>-->
+	<physical>
+		<mesh filename="$(param mesh/a0_buoy)" scale="0.5"/>
+		<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+	</physical>
+</static>
+
+<light name="Light_Bottom_Right">
+    <specs radius="0.1" cone_angle="180.0" illuminance="2000.0"/>
+    <color temperature="5600.0"/>
+    <link name="Link1"/>
+    <!--world_transform xyz="$(param marked_positions/light_center/position)" rpy="$(param marked_positions/light_center/orientation)"/-->
+    <world_transform xyz="20.25 0.25 1.75" rpy="0.0 -1.5708 0.0"/>
+    <!--<world_transform xyz="20.25 0.25 -0.25" rpy="0.0 -1.5708 0.0"/>-->
+</light>
+
+<static name="Light_Bottom_Right_Buoy" type="model">
+    <look name="yellow"/>
+	<material name="Neutral"/>
+    <world_transform xyz="20.50 0.25 1.75" rpy="0.0 -1.5708 0.0"/>
+    <!--<world_transform xyz="20.50 0.25 -0.25" rpy="0.0 -1.5708 0.0"/>-->
+	<physical>
+		<mesh filename="$(param mesh/a0_buoy)" scale="0.5"/>
+		<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+	</physical>
+</static>
+
+
+<!-- Begin: A0 buoys at the four corners-->
+<static name="A0_Buoy" type="model">
+    <look name="$(param marked_positions/buoy_corner1/color)"/>
+	<material name="Neutral"/>
+    <world_transform xyz="$(param marked_positions/buoy_corner1/position)" rpy="$(param marked_positions/buoy_corner1/orientation)"/>
+	<physical>
+		<mesh filename="$(param mesh/a0_buoy)" scale="1.0"/>
+		<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+	</physical>
+</static>
+
+<static name="A0_Buoy" type="model">
+    <look name="$(param marked_positions/buoy_corner2/color)"/>
+	<material name="Neutral"/>
+    <world_transform xyz="$(param marked_positions/buoy_corner2/position)" rpy="$(param marked_positions/buoy_corner1/orientation)"/>
+	<physical>
+		<mesh filename="$(param mesh/a0_buoy)" scale="1.0"/>
+		<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+	</physical>
+</static>
+
+<static name="A0_Buoy" type="model">
+    <look name="$(param marked_positions/buoy_corner3/color)"/>
+	<material name="Neutral"/>
+    <world_transform xyz="$(param marked_positions/buoy_corner3/position)" rpy="$(param marked_positions/buoy_corner1/orientation)"/>
+	<physical>
+		<mesh filename="$(param mesh/a0_buoy)" scale="1.0"/>
+		<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+	</physical>
+</static>
+
+<static name="A0_Buoy" type="model">
+    <look name="$(param marked_positions/buoy_corner4/color)"/>
+	<material name="Neutral"/>
+    <world_transform xyz="$(param marked_positions/buoy_corner4/position)" rpy="$(param marked_positions/buoy_corner1/orientation)"/>
+	<physical>
+		<mesh filename="$(param mesh/a0_buoy)" scale="1.0"/>
+		<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+	</physical>
+</static>
+<!-- End: A0 buoys at the four corners-->
+
+<!-- Begin: A0 buoys in the middle -->
+<static name="A0_Buoy" type="model">
+    <look name="$(param marked_positions/buoy_mid1/color)"/>
+	<material name="Neutral"/>
+    <world_transform xyz="$(param marked_positions/buoy_mid1/position)" rpy="$(param marked_positions/buoy_mid1/orientation)"/>
+	<physical>
+		<mesh filename="$(param mesh/a0_buoy)" scale="1.0"/>
+		<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+	</physical>
+</static>
+
+<static name="A0_Buoy" type="model">
+    <look name="$(param marked_positions/buoy_mid2/color)"/>
+	<material name="Neutral"/>
+    <world_transform xyz="$(param marked_positions/buoy_mid2/position)" rpy="$(param marked_positions/buoy_mid2/orientation)"/>
+	<physical>
+		<mesh filename="$(param mesh/a0_buoy)" scale="1.0"/>
+		<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+	</physical>
+</static>
+<!-- End: A0 buoys in the middle -->
+
+<!-- Begin: Anchors at the four corners -->
+<static name="Anchor" type="model">
+	<look name="black"/>
+	<material name="Neutral"/>
+    <world_transform xyz="$(param marked_positions/buoy_corner1/position)" rpy="0.00 0.00 3.14"/>
+	<physical>
+        <mesh filename="$(param mesh/anchoring_buoy_rope)" scale="1.0"/>
+		<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+	</physical>
+</static>
+
+<static name="Anchor" type="model">
+	<look name="black"/>
+	<material name="Neutral"/>
+	<world_transform xyz="$(param marked_positions/buoy_corner2/position)" rpy="0.00 0.00 0.00"/>
+	<physical>
+        <mesh filename="$(param mesh/anchoring_buoy_rope)" scale="1.0"/>
+		<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+	</physical>
+</static>
+
+<static name="Anchor" type="model">
+	<look name="black"/>
+	<material name="Neutral"/>
+	<world_transform xyz="$(param marked_positions/buoy_corner3/position)" rpy="0.00 0.00 3.14"/>
+	<physical>
+		<mesh filename="$(param mesh/anchoring_buoy_rope)" scale="1.0"/>
+		<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+	</physical>
+</static>
+
+<static name="Anchor" type="model">
+	<look name="black"/>
+	<material name="Neutral"/>
+	<world_transform xyz="$(param marked_positions/buoy_corner4/position)" rpy="0.00 0.00 0.00"/>
+	<physical>
+		<mesh filename="$(param mesh/anchoring_buoy_rope)" scale="1.0"/>
+		<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+	</physical>
+</static>
+<!-- End: Anchors at the four corners -->
+
+
+</scenario>
