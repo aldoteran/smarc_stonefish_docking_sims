@@ -28,7 +28,7 @@
     </base_link>
 
     <link name="Batteries" type="box" physics="submerged" buoyant="false">
-        <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+        <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 -1.0"/>
         <dimensions xyz="0.2 0.08 0.08"/>
         <material name="Neutral"/>
         <look name="manipulator"/>
@@ -237,6 +237,7 @@
         <link name="Vehicle"/>
         <origin rpy="3.1416 0.0 -1.5707" xyz="1.1385 0.0 -0.052"/>
         <specs resolution_x="1280" resolution_y="720" horizontal_fov="107.0"/>
+        <!-- <ros_publisher topic="/$(arg robot_name)/perception/csi_cam_0/camera"/> -->
         <ros_publisher topic="/$(arg robot_name)/perception/csi_cam_0/camera"/>
     </sensor>
 
@@ -244,14 +245,23 @@
         <link name="Vehicle"/>
         <origin rpy="1.3 3.1416 2.3416" xyz="1.313 0.048 -0.007"/>
         <specs resolution_x="1280" resolution_y="720" horizontal_fov="107.0"/>
-        <ros_publisher topic="/$(arg robot_name)/perception/csi_cam_1/camera"/>
+        <!-- <ros_publisher topic="/$(arg robot_name)/perception/csi_cam_1/camera"/> -->
+        <ros_publisher topic="/$(arg robot_name)/payload/cam_port"/>
     </sensor>
 
     <sensor name="camera_front_right_link" type="camera" rate="5.0">
         <link name="Vehicle"/>
         <origin rpy="1.3 3.1416 0.8" xyz="1.313 -0.048 -0.007"/>
         <specs resolution_x="1280" resolution_y="720" horizontal_fov="107.0"/>
-        <ros_publisher topic="/$(arg robot_name)/perception/csi_cam_2/camera"/>
+        <!-- <ros_publisher topic="/$(arg robot_name)/perception/csi_cam_2/camera"/> -->
+        <ros_publisher topic="/$(arg robot_name)/payload/cam_starboard"/>
+    </sensor>
+
+    <sensor name="camera_front_link" type="camera" rate="5.0">
+        <link name="Vehicle"/>
+        <origin rpy="1.5707 3.1416 1.5707" xyz="0.647 0.0 0.0"/>
+        <specs resolution_x="1280" resolution_y="720" horizontal_fov="107.0"/>
+        <ros_publisher topic="/$(arg robot_name)/payload/cam_forward"/>
     </sensor>
 
     <sensor name="multibeam_down_link" type="multibeam1d" rate="5.0">

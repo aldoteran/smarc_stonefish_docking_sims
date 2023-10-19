@@ -191,9 +191,16 @@
     <!-- Sensors -->
     <sensor name="dynamics" type="odometry" rate="30.0">
         <link name="Vehicle"/>
-        <noise position="0.001" velocity="0.0015" angle="0.0001745" angular_velocity="0.0001745"/>
+        <noise position="0.01" velocity="0.0015" angle="0.001745" angular_velocity="0.0001745"/>
         <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
         <ros_publisher topic="/$(arg robot_name)/sim/odom"/>
+    </sensor>
+
+    <sensor name="dynamics" type="odometry" rate="30.0">
+        <link name="Vehicle"/>
+        <noise position="0.0" velocity="0.0" angle="0.0" angular_velocity="0.0"/>
+        <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+        <ros_publisher topic="/$(arg robot_name)/sim/gt_odom"/>
     </sensor>
 
     <sensor name="pressure_link" type="pressure" rate="5.0">
@@ -270,21 +277,21 @@
     <!--</light>-->
 
     <!--Transponder only.-->
-    <comm name="Modem" type="acoustic_modem" device_id="9">
-        <specs vertical_fov="360.0" horizontal_fov="360.0" range="8000.0"/>
-        <connect device_id="5"/>
-        <origin rpy="0.0 0.0 0.0" xyz="0.389 0.002 0.337"/>
-        <link name="Vehicle"/>
-        <ros_publisher topic="/$(arg robot_name)/sim/usbl"/>
-    </comm>
+    <!--<comm name="Modem" type="acoustic_modem" device_id="9">-->
+        <!--<specs vertical_fov="360.0" horizontal_fov="360.0" range="8000.0"/>-->
+        <!--<connect device_id="5"/>-->
+        <!--<origin rpy="0.0 0.0 0.0" xyz="0.389 0.002 0.337"/>-->
+        <!--<link name="Vehicle"/>-->
+        <!--<ros_publisher topic="/$(arg robot_name)/sim/usbl"/>-->
+    <!--</comm>-->
 
     <!--Moved from LoLo.-->
-    <sensor name="camera_aft" type="camera" rate="30.0">
-        <link name="Vehicle"/>
-        <origin rpy="-1.5707 0.0 1.5707" xyz="0.0 0.0 0.10"/>
-        <specs resolution_x="1024" resolution_y="720" horizontal_fov="107.0"/>
-        <ros_publisher topic="/$(arg robot_name)/sim/camera_aft"/>
-    </sensor>
+    <!--<sensor name="camera_aft" type="camera" rate="30.0">-->
+        <!--<link name="Vehicle"/>-->
+        <!--<origin rpy="-1.5707 0.0 1.5707" xyz="0.0 0.0 0.10"/>-->
+        <!--<specs resolution_x="1024" resolution_y="720" horizontal_fov="107.0"/>-->
+        <!--<ros_publisher topic="/$(arg robot_name)/sim/camera_aft"/>-->
+    <!--</sensor>-->
 
     <!--USBL unit, moved to Lolo.-->
     <!--<comm name="usbl_link" type="usbl" device_id="5">-->
@@ -298,6 +305,37 @@
         <!--<ros_publisher topic="/$(arg robot_name)/sim/usbl"/>-->
     <!--</comm>-->
     <!--End For docking experiments-->
+
+    <sensor name="camera_down_link" type="camera" rate="5.0">
+        <link name="Vehicle"/>
+        <origin rpy="3.1416 0.0 -1.5707" xyz="1.1385 0.0 -0.052"/>
+        <specs resolution_x="640" resolution_y="360" horizontal_fov="107.0"/>
+        <!-- <ros_publisher topic="/$(arg robot_name)/perception/csi_cam_0/camera"/> -->
+        <ros_publisher topic="/$(arg robot_name)/perception/csi_cam_0/camera"/>
+    </sensor>
+
+    <sensor name="camera_front_left_link" type="camera" rate="5.0">
+        <link name="Vehicle"/>
+        <origin rpy="1.3 3.1416 2.3416" xyz="1.313 0.048 -0.007"/>
+        <specs resolution_x="640" resolution_y="360" horizontal_fov="107.0"/>
+        <!-- <ros_publisher topic="/$(arg robot_name)/perception/csi_cam_1/camera"/> -->
+        <ros_publisher topic="/$(arg robot_name)/payload/cam_port"/>
+    </sensor>
+
+    <sensor name="camera_front_right_link" type="camera" rate="5.0">
+        <link name="Vehicle"/>
+        <origin rpy="1.3 3.1416 0.8" xyz="1.313 -0.048 -0.007"/>
+        <specs resolution_x="640" resolution_y="360" horizontal_fov="107.0"/>
+        <!-- <ros_publisher topic="/$(arg robot_name)/perception/csi_cam_2/camera"/> -->
+        <ros_publisher topic="/$(arg robot_name)/payload/cam_starboard"/>
+    </sensor>
+
+    <sensor name="camera_front_link" type="camera" rate="5.0">
+        <link name="Vehicle"/>
+        <origin rpy="1.5707 3.1416 1.5707" xyz="1.313 0.0 0.0"/>
+        <specs resolution_x="640" resolution_y="360" horizontal_fov="107.0"/>
+        <ros_publisher topic="/$(arg robot_name)/payload/cam_forward"/>
+    </sensor>
 
     <world_transform rpy="3.1416 0.0 0.0" xyz="$(arg robot_pos)"/>
 

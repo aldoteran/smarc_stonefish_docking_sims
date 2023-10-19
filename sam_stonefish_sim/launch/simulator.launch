@@ -2,11 +2,11 @@
 
     <arg name="robot_name" default="sam"/>
     <arg name="xacro_file" default="$(find sam_stonefish_sim)/data/sam_auv/sam_auv.urdf.xacro"/>
-    <arg name="with_teleop" default="false"/>
-    <arg name="simulate_dr" default="false"/>
+    <arg name="with_teleop" default="true"/>
+    <arg name="simulate_dr" default="true"/>
 
     <!-- These are the arguments you need to care about -->
-    <arg name="world_config" default="biograd_world.yaml"/>
+    <arg name="world_config" default="visual_docking.yaml"/>
     <arg name="world_config_file" default="$(find smarc_stonefish_worlds)/config/$(arg world_config)"/>
     <arg name="robot_config" default="sam_no_payload_sensors.yaml"/>
     <arg name="robot_config_file" default="$(find sam_stonefish_sim)/config/$(arg robot_config)"/>
@@ -35,11 +35,24 @@
         <arg name="utm_band" value="$(arg utm_band)"/>
     </include>
 
-    <include file="$(find sam_stonefish_sim)/launch/robot_bridge.launch">
-        <arg name="robot_name" value="$(arg robot_name)"/>
-        <arg name="xacro_file" value="$(arg xacro_file)"/>
-        <arg name="with_teleop" value="$(arg with_teleop)"/>
-        <arg name="simulate_dr" value="$(arg simulate_dr)"/>
-    </include>
+    <include file="$(find sam_stonefish_sim)/launch/robot_bridge.launch"/>
+        <!--<arg name="robot_name" value="$(arg robot_name)"/>-->
+        <!--<arg name="xacro_file" value="$(arg xacro_file)"/>-->
+        <!--<arg name="with_teleop" value="$(arg with_teleop)"/>-->
+        <!--<arg name="simulate_dr" value="$(arg simulate_dr)"/>-->
+    <!--</include>-->
+
+    <!--NED to ENU to Relative odometry publisher-->
+    <include file="$(find optical_uw_docking)/launch/odometry_node.launch"/>
+
+    <!--Target initializer-->
+    <node name="target_initializer" type="target_initializer.py" pkg="sam_stonefish_sim" output="screen">
+        <param name="initial_pos_stddev" value="1.0"/>
+        <param name="initial_rot_stddev" value="0.05"/>
+        <param name="target_true_frame" value="gt/station"/>
+        <param name="target_frame" value="station"/>
+        <param name="map_frame" value="map"/>
+        <param name="initial_pose_topic" value="target/initial_estimate"/>
+    </node>
 
 </launch>
